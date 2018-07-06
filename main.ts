@@ -1,14 +1,14 @@
 // Add you sand-box code here and lets play with RXJS.
-import {Observable} from "rxjs";
 
-alert("oke webpack & typescript working time to start coding with the RXJS lib");
+// Subscribe => .unsubscribe();
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/observable/interval";
 
-let numbers = [1, 2, 3, 4, 5];
-let subscription = Observable.from(numbers);
+const observable = Observable.interval(1000);
+const subscription =  observable.subscribe(data => console.log(data));
 
-subscription.subscribe(
-    (dataItem) => console.log(`${dataItem}`),
-    (error)=> console.error(`Error detected:>`,error),
-    ()=>console.info("Observer completed"));
-
+setTimeout(()=>{
+    console.log(`Unsubscribing ;)`);
+    subscription.unsubscribe();
+}, 5000);
 
